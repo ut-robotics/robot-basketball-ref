@@ -22,7 +22,7 @@ var robotAcksReceived = {};
 
 io.on('connection', function (socket) {
     if (!game) {
-        game = new Game('A', 'A', 'B');
+        game = new Game('O', 'N', 'K');
 
         game.on('stateChanged', function() {
             io.emit('gameInfo', game.getInfo());
@@ -114,6 +114,10 @@ io.on('connection', function (socket) {
             game.start(info.robotId);
             callback();
         } else {
+            robotAcksReceived = {};
+
+            sendRobotAcks();
+
             sendSignal(info, callback);
         }
     });
@@ -141,6 +145,12 @@ function listSerialPorts(callback) {
 }
 
 function isSerialPortOpen() {
+    //logger.log('isSerialPortOpen');
+
+    /*if (serialPort) {
+        logger.log('typeof serialPort.isOpen', typeof serialPort.isOpen);
+    }*/
+
     return serialPort !== null && typeof serialPort.isOpen === 'function' && serialPort.isOpen();
 }
 
@@ -215,7 +225,7 @@ function connectSerialPort(path, callback) {
 
         serialPort = new SerialPort(path, {
             baudrate: baudRate,
-            parser: parser(5)
+            parser: parser(12)
         });
 
         serialPort.on('open', function () {
@@ -341,7 +351,7 @@ function writeSerialPort(message, callback) {
                     //logger.log(results);
                     sendCount++;
 
-                    logger.log('sendCount', sendCount);
+                    //logger.log('sendCount', sendCount);
 
                     if (sendCount >= sendCountMax) {
                         clearInterval(sendInterval);

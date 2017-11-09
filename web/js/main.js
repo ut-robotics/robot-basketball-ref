@@ -509,7 +509,7 @@ Robot.prototype.render = function ($container) {
 
 Robot.prototype.updateRobotAcks = function () {
     var robotAcks = this.game.com.robotAcks,
-        $robot = this.$container.find('.robot-id');
+        $robot = this.$container.find('.robot-info');
 
     if (robotAcks[this.id]) {
         $robot.addClass('active');
