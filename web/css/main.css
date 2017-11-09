@@ -1,0 +1,180 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#content-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#content {
+	flex-grow: 1;
+	max-width: 600px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+    flex-grow: 1;
+}
+
+.game-container {
+    margin: 0 1%;
+    width: 34%;
+}
+
+.robot-container {
+    width: 33%;
+}
+
+.robot-info {
+    font-weight: bold;
+    flex-grow: 1;
+    padding: 7px 10px 3px 10px;
+    border-bottom: 10px solid black;
+    display: flex;
+    justify-content: center;
+}
+
+.robot-info.active {
+    border-bottom: 10px solid limegreen;
+}
+
+.field-info {
+    font-weight: bold;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.field-id,
+.robot-id {
+    min-width: 20px;
+    border-bottom: 1px solid #666;
+}
+
+.info {
+    text-align: center;
+}
+
+.game-state-container {
+    background-color: #ddd;
+    padding: 5px 0;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.game-state {
+
+}
+
+.time {
+    text-align: center;
+    background-color: #ddd;
+    padding: 5px 0;
+    font-size: 30px;
+    margin-top: 5px;
+}
+
+.goals-container,
+.cards-container {
+    margin-top: 5px;
+}
+
+.goals-title,
+.cards-title {
+    text-align: center;
+}
+
+.goals-teams,
+.cards-teams {
+    display: flex;
+}
+
+.goals-team1,
+.goals-team2,
+.cards-team1,
+.cards-team2 {
+    text-align: center;
+    padding: 5px 0;
+    font-size: 30px;
+    width: 50%;
+}
+
+.controls {
+
+}
+
+.button {
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.5s, color 0.5s;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    background-color: rgb(179, 208, 221);
+}
+
+.button-start {
+     background-color: rgb(130, 221, 128);
+ }
+
+.button-stop {
+    background-color: rgb(221, 149, 145);
+}
+
+.button {
+    margin-top: 5px;
+}
+
+.button:active {
+    color: white;
+    transition: none;
+
+    background-color: rgb(50, 100, 130);
+}
+
+.button-start:active {
+    background-color: rgb(31, 221, 42);
+}
+
+.button-stop:active {
+    background-color: rgb(221, 62, 46);
+}
+
+.button.disabled,
+.button.disabled:active {
+    background-color: lightgray;
+    color: gray;
+    transition: none;
+}
+
+.com-button {
+    background-color: rgb(154, 182, 195);
+}
+
+.ports-container {
+
+}
+
+.ports-container.hidden,
+.com-config-container.hidden {
+	display: none;
+}
