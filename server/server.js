@@ -339,7 +339,7 @@ function writeSerialPort(message, callback) {
         logger.log('send', message);
 
         var sendCount = 0;
-        var sendCountMax = message.slice(2, 3) === 'X' ? 10 : 1;
+        var sendCountMax = message.slice(2, 3) === 'X' ? 3 : 1;
 
         var sendInterval = setInterval(function () {
             serialPort.write(message, function(err, results) {
@@ -359,7 +359,7 @@ function writeSerialPort(message, callback) {
                     }
                 }
             });
-        }, 10);
+        }, 100);
 
     } else {
         callback();
