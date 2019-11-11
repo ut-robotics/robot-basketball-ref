@@ -131,17 +131,17 @@ function sendRobotAcks() {
     io.emit('robotAcks', robotAcksReceived);
 }
 
-function listSerialPorts(callback) {
-    SerialPort.list(function (err, ports) {
-        if (err) {
-            logger.log(err);
-            callback(err)
-        } else {
-            logger.log(ports);
-            serialPorts = ports;
-            callback(null, ports)
-        }
-    });
+async function listSerialPorts(callback) {
+    try {
+        const ports = await SerialPort.list();
+
+        logger.log(ports);
+        serialPorts = ports;
+        callback(null, ports);
+    } catch (e) {
+        logger.log(err);
+        callback(err);
+    }
 }
 
 function isSerialPortOpen() {
@@ -151,7 +151,7 @@ function isSerialPortOpen() {
         logger.log('typeof serialPort.isOpen', typeof serialPort.isOpen);
     }*/
 
-    return serialPort !== null && typeof serialPort.isOpen === 'function' && serialPort.isOpen();
+    return serialPort !== null && serialPort.isOpen;
 }
 
 function getSerialPortInfo() {
@@ -224,7 +224,7 @@ function connectSerialPort(path, callback) {
         };
 
         serialPort = new SerialPort(path, {
-            baudrate: baudRate,
+            baudRate: baudRate,
             parser: parser(12)
         });
 

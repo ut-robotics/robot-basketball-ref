@@ -155,8 +155,8 @@ Com.prototype.renderPorts = function () {
 	if (this.ports) {
         this.ports.forEach(function (port) {
             if (port.pnpId) {
-                var isConnected = this.serialPortInfo !== null && port.comName === this.serialPortInfo.path;
-                var name = (isConnected ? 'Disconnect ' : '') + port.comName;
+                var isConnected = this.serialPortInfo !== null && port.path === this.serialPortInfo.path;
+                var name = (isConnected ? 'Disconnect ' : '') + port.path;
 
                 var $port = $('<div class="button">' + name + '</div>');
 
@@ -166,7 +166,7 @@ Com.prototype.renderPorts = function () {
                     if (isConnected) {
                         this.disconnect();
                     } else {
-                        this.connect(port.comName);
+                        this.connect(port.path);
                     }
                 }.bind(this));
             }
